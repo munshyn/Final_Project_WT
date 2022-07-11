@@ -1,0 +1,389 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@600&family=Raleway&display=swap');
+
+body{
+    margin: 0;
+    min-height: 100vh;
+    text-align: center;
+}
+
+.container-main {
+    display: grid;
+    grid-template-columns: 0.6fr 1.2fr 1.2fr 1.2fr 1.2fr 0.6fr;
+    grid-template-rows: 0.4fr 2.3fr 1fr 1fr 1fr;
+    grid-auto-flow: row;
+    width: 100%;
+    height: 100%;
+}
+  
+.header { 
+    grid-area: 1 / 1 / 2 / 7;
+    background:linear-gradient(to right,#90AFC5,#336B87,#2A3132);
+}
+
+ul{
+    list-style-type: none;
+    margin: 0.5vh;
+    /* margin-top: 1.5vh; */
+    padding: 1vh;
+    overflow: hidden;
+    color: #2A3132;
+    font-family: 'Raleway', sans-serif;
+}
+
+li{
+    float: left;
+    font-size: 2.67vh;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+li a{
+    margin-right: 0.5vw;
+}
+
+.profile-img{
+    height: 50%;
+    margin: 0;
+    padding: 0;
+    background-color: red;
+}
+
+.middle { 
+    grid-area: 2 / 1 / 4 / 7; 
+    background-image: url(image/main_background.jpg);
+    background-color: wheat;
+    background-size: 100% 100%;
+    background-size: cover;
+    background-position: center;
+    height: auto;
+}
+
+.welcome-text { 
+    grid-area: 2 / 2 / 3 / 6; 
+    text-align: left;
+    /* padding-top: 5vh; */
+    padding-left: 1.06vw;
+    margin:5.32vh 0vw; 
+    border: 3px solid white;
+    backdrop-filter:  blur(5px);
+}
+
+.welcome-text p{
+    color: white;
+    font-weight: 300;
+}
+
+.welcome-text #p1{
+    font-size: 2.72vh;
+    font-family: 'Raleway', sans-serif;
+    margin-bottom: 0;
+    padding-top: 6vh;
+    
+}
+
+.welcome-text #p2{
+    font-size: 7.27vh;
+    font-weight: bold;
+    font-family: 'Oswald', sans-serif;
+    margin-top: 0;
+    padding-bottom: 2vh;
+}
+
+.box{
+    background-color: #90AFC5;
+    margin: 0px 0.69vw ; 
+    border-radius: 10%;
+    cursor: pointer;
+    /* min-width: 50%;
+    min-height: 50%; */
+    height: auto;
+    text-decoration: none;
+    padding-top: 1.07vh;
+}
+
+.box:hover{
+    box-shadow:5px 4px 5px 0px  black;
+}
+
+.box p{
+    color: white;
+    font-family: 'Raleway', sans-serif;
+    /* padding-top: 2.16vh; */
+    text-transform: uppercase;
+    font-size: 2.5vh;
+}
+
+
+.icon{
+    height: 50%;
+    width: 50%;
+    object-fit: contain;
+    align-self: center;
+    margin-top: 2.16vh;
+    padding: 2vh;
+    padding-bottom: 0;
+}
+
+#box-1 { 
+    grid-area: 3 / 2 / 5 / 3;
+    
+}
+  
+#box-2 { 
+    grid-area: 3 / 3 / 5 / 4; 
+   
+}
+  
+#box-3 { 
+    grid-area:3 / 4 / 5 / 5;
+     
+}
+  
+#box-4 { 
+    grid-area: 3 / 5 / 5 / 6;
+    
+}
+
+.footer { 
+    grid-area: 4 / 1 / 6 / 7; 
+    background:linear-gradient(to right,#336B87 ,#2A3132 );
+}
+
+.btn {
+	box-shadow:5px 4px 5px 0px  black;
+	background-color:white;
+	border-radius:15px;
+	display:inline-block;
+	cursor:pointer;
+	color:#3a8a9e;
+	font-size: 2.5vh;
+	padding:0.5vh 2vw;
+	text-decoration:none;
+    text-transform: uppercase;
+    font-family:'Raleway', sans-serif ;
+}
+.btn:hover {
+	background-color:#2A3132;
+    color: white;
+}
+
+/* ANIMATION */
+/* WELCOME TEXT ANIMATION */
+.tracking-in-expand {
+	animation: tracking-in-expand 1.5s ease-in-out 0.3s both;
+}
+
+@keyframes tracking-in-expand {
+    0% {
+      letter-spacing: -0.5em;
+      opacity: 0;
+    }
+    40% {
+      opacity: 0.6;
+    }
+    100% {
+      opacity: 1;
+    }
+}
+
+/* FORMS CSS */
+/* GRID LAYOUT ARE USING .container-main */
+
+.middle-form{
+    grid-area: 2 / 1 / 4 / 7; 
+    background-image: url(image/form_background.jpg);
+    background-size: contain;
+}
+
+#form-title{
+    grid-area: 2 / 2 / 5 / 4;
+    border-radius: 10px 0 0 10px;
+    background-image: url(image/form_background_2.jpg);
+    background-size: cover;
+    background-color: #2A3132;
+    margin-top: 10vh;   
+}
+
+#form-title #p2{
+    font-size: 6vh;
+    font-weight: bold;
+    font-family: 'Oswald', sans-serif;
+    color: white;
+}
+
+#form-content {
+    grid-area: 2 / 4 / 5 / 6;
+    background-color: #90AFC5;
+    border-radius: 0 10px 10px 0;
+    text-align: center;
+    margin-top: 10vh;
+    padding: 0vh 2vw ;
+    font-family: 'Raleway', sans-serif;
+}
+
+table.form, table.form td{
+    table-layout: fixed;
+    width: 100%;
+}
+
+table.form{
+    border-spacing: 2vh;
+}
+
+input.form-box {
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    height: 4vh;
+}
+
+input.form-box:hover{
+    box-shadow:5px 4px 5px 0px  black
+}
+
+#form-content #p1{
+    font-size: 2.8vh;
+}
+
+#form-content td.form-text{
+    grid-area: 2 / 4 / 4 / 5;
+    font-size: 2vh;
+}
+
+#form-content td.form-box{
+    grid-area: 2 / 5 / 4 / 6; 
+    font-size: 2vh;
+}
+
+/* PROFILE CSS */
+/* GRID LAYOUT ARE USING .container-main */
+
+.middle-profile{
+    grid-area: 2 / 1 / 4 / 7; 
+    background-image: url(image/profile_background.jpg);
+    background-size: contain;
+    background-size: 100%;
+}
+
+.profile-pic{
+    grid-area: 2 / 2 / 5 / 3;
+    background-image: url(image/user.png);
+    background-repeat:no-repeat;
+    background-position: center;
+    background-size: 70% ;
+    background-color: #336B87;
+    border-radius: 10px 0 0 10px;
+    margin-top: 10vh;
+    box-shadow:5px 4px 5px 0px  black;
+}
+
+.profile-content{
+    grid-area: 2 / 3 / 5 / 6;
+    background-color:#2A3132;
+    padding: 10vh 2vw;
+    border-radius: 0 10px 10px 0;
+    margin-top: 10vh;
+    font-family: 'Raleway', sans-serif;
+    box-shadow:5px 4px 5px 0px  black;
+}
+
+table.profile{
+    table-layout: fixed;
+    width: 100%;
+    margin-bottom: 5vh;
+    border-collapse: collapse;
+    font-size: 3vh;
+    font-weight:bold;
+    background-color:#90AFC5 ;
+}
+
+table.profile td{
+    padding: 5vh 3vw;
+    border: 2px solid white;
+    
+}
+
+.profile tr:hover{
+    background-color: grey;
+    color: white;
+}
+
+/* VIEW TABLE CSS */
+.view-table{
+    grid-area: 2 / 2 / 5 / 6;
+    background-color: aliceblue;
+    margin-top: 10vh;
+    /* margin-bottom: auto; */
+    padding: 2vh 5vw 10vh 5vw;
+    border-radius: 10px;
+    box-shadow:5px 4px 5px 0px  black;
+    font-family: 'Raleway', sans-serif;
+    font-size: 3vh;
+    overflow: auto;
+    
+}
+
+.table{
+    width: 100%;
+    margin-top: 5vh;
+    border-collapse: collapse;
+    table-layout: fixed;
+    border-radius: 20px;
+    border: 1px solid #2A3132;
+}
+
+.table td{
+    /* border: 1px solid black; */
+    text-align: center;
+    padding: 1.5vh;
+    overflow: auto;
+    
+}
+
+.table th{
+    background-color:#336B87;
+    color: white;
+    font-weight: bold;
+    /* border: 1px solid black; */
+    padding: 2vh;
+    text-transform: uppercase;
+    
+}
+
+.table tr:nth-child(odd){
+    background-color: #cac6c6;
+}
+.table tr:hover{
+    color: white;
+    background-color: #2A3132;
+}
+
+.btn_green{
+    box-shadow:5px 4px 5px 0px  black;
+	background-color:#48b12e;
+	border-radius:15px;
+	display:inline-block;
+	cursor:pointer;
+	color:black;
+    font-weight: bold;
+	font-size: 1.5vh;
+	padding:0.5vh 0.5vw;
+	text-decoration:none;
+    text-transform: uppercase;
+    font-family:'Raleway', sans-serif ;
+}
+
+.btn_red{
+    box-shadow:5px 4px 5px 0px  black;
+	background-color:red;
+	border-radius:15px;
+	display:inline-block;
+	cursor:pointer;
+	color:black;
+    font-weight: bold;
+	font-size: 1.5vh;
+	padding:0.5vh 0.5vw;
+	text-decoration:none;
+    text-transform: uppercase;
+    font-family:'Raleway', sans-serif ;
+}

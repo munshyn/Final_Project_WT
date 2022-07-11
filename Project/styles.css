@@ -1,0 +1,52 @@
+body{ 
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    background-color: white;
+}
+h2{
+    text-align: center;
+    font-size: 4.54vh;
+    padding-top: 5vh;
+}
+
+#box {
+    background-image: linear-gradient(to bottom, #48db83, #2980b9);
+    border: none;
+    height: 65.7vh;
+    width: 21.6vw;
+    margin: auto;
+    padding: 1vh 9.54vw;
+    box-shadow:5px 4px 5px 0px  black;
+    border-radius: 10%;
+}
+
+.avatar-container {
+    text-align: center;
+    padding: 10px 0px 10px 0px;
+}
+
+.avatar{
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%
+}
+
+input{
+    width: 100%;
+    padding: 1.81vh 0;
+    margin: 2.27vh 0.02vw;
+    border: none;
+    border-radius: 20px;
+    text-align: center;
+}
+
+input[type=submit]{
+    margin-top: 5vh;
+    font-size: 18px;
+}
+
+input[type=submit]:hover{
+    box-shadow: 5px 4px 5px 0px  black;
+}
