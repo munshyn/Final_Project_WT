@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+    </head>
+<body>
+<h3>list of users</h3>
+<p id="consume_webservice">demo</p>
+</body>
+<script>
+    // $document.ready(function(){
+    //     var response = '';
+    //     $.ajax({
+    //         type: "GET",
+    //         url: "http://localhost/final_project_wt/api/users",
+    //         async: false,
+    //         success: function(text) {
+    //             response = text;
+    //         }
+    //     });
+
+    //     alert(response);
+    // });
+            const xhr = new XMLHttpRequest();
+            xhr.open('get','http://localhost/final_project_wt/api/users',true);
+            xhr.send();
+            xhr.onload = function(){
+                console.log(xhr.responseText);
+                document.querySelector('#consume_webservice').innerHTML = xhr.responseText;
+           }
+</script>
