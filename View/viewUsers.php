@@ -1,17 +1,17 @@
 <html>
 
 <head>
-	<title>View All Students</title>
+	<title>View All Users</title>
 
 	<head>
-		<link rel="stylesheet" href="manage.css">
+		<link rel="stylesheet" href="../static/manage.css">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 			crossorigin="anonymous">
 
 	<body>
 		<div class="header">
 			<ul>
-				<li>View All Students</li>
+				<li>View All Users</li>
 				<li style="float:right"><a href="" class="btn">LOGOUT</a></li>
 				<li style="float:right"><a href="" class="btn">home</a></li>
 			</ul>
@@ -35,7 +35,8 @@
 			</table>
 			<br>
 			<div class="row justify-content-center">
-				<a href="index.html"><button type="" class="btn btn-primary">Back</button></a>
+				<a href="index.html" style="padding-right: 5px;"><button type="" class="btn btn-secondary">Back</button></a>
+				<a href="updateUsers.html"><button type="" class="btn btn-primary">Update</button></a>
 			  </div>
 		</div>
 		</div>
@@ -51,7 +52,7 @@
 		//step 1
 		var xhttp = new XMLHttpRequest();
 		//step 2
-		xhttp.open("GET", "http://localhost/final_project_wt/api/students", true);
+		xhttp.open("GET", "http://localhost/final_project_wt/api/users", true);
 		//step 3
 		xhttp.send();
 		//step 4 - do the process upon receiving the response with status 200

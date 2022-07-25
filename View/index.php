@@ -217,7 +217,7 @@ session_start();
                                     <div>
                                         <h2>View all student</h2>
                                         <p>Page containing list of students details including id, email and name in the system. Admin have an ability to delete or update any of the selected student </p>
-                                        <a href="#" class="btn btn-primary">
+                                        <a href="viewStudents.php" class="btn btn-primary">
                                             View student
                                         </a>
                                     </div>

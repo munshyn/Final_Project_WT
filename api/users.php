@@ -33,7 +33,7 @@ $app->get('/users', function (Request $request, Response $response, array $args)
 
 //get all students
 $app->get('/students', function (Request $request, Response $response, array $args) {
-    $sql = "SELECT * FROM users WHERE level = 1";
+    $sql = "SELECT * FROM users WHERE level = 3";
     try {
         //get the db object
         $dbStudent = new db();
