@@ -8,13 +8,15 @@ require 'db.php';
 
 $app = new \Slim\App;
 //routes for students
-require_once('student.php');
+//require_once('student.php');
 //routes for managers
 require_once('manager.php');
 //routes for colleges
 require_once('college.php');
 //routes for admins
 require_once('admin.php');
+
+require_once('users.php');
 
 
 $app->get('/', function () {

@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@600&family=Raleway&display=swap');
+
+body{
+    margin: 0;
+    min-height: 100vh;
+    text-align: center;
+}
+
+.container-main {
+    display: grid;
+    grid-template-columns: 0.6fr 1.2fr 1.2fr 1.2fr 1.2fr 0.6fr;
+    grid-template-rows: 0.4fr 2.3fr 1fr 1fr 1fr;
+    grid-auto-flow: row;
+    width: 100%;
+    height: 100%;
+}
+  
+.header { 
+    border-bottom: 1px solid gainsboro;
+}
+
+ul{
+    list-style-type: none;
+    margin: 0.5vh;
+    padding: 1vh;
+    overflow: hidden;
+    color: #2A3132;
+    font-family: 'Raleway', sans-serif;
+}
+
+li{
+    float: left;
+    font-size: 2.67vh;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.container{
+    padding-top: 10vh;
+}
