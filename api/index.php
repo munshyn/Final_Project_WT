@@ -10,12 +10,9 @@ $app = new \Slim\App;
 //routes for students
 require_once('student.php');
 //routes for managers
-require_once('manager.php');
+require_once('collegeapp.php');
 //routes for colleges
 require_once('college.php');
-//routes for admins
-require_once('admin.php');
-
 
 $app->get('/', function () {
     echo "Hello, world";

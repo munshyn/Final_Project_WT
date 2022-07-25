@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="">
+        <input type="submit" id="getUser" value="CLICK FOR RESULT"><br><br>
+        User ID <input type="text" id="id">
+        <input type="submit" id="getUserid" value="delete">
+        <ul id="pengguna"></ul>
+
+    </form>
+
+    <script>
+        //read
+
+        //     const xhr = new XMLHttpRequest();
+        //     xhr.open('get','http://localhost/final_project_wt/api/students',true);
+        //     xhr.send();
+        //     xhr.onload = function(){
+        //         console.log(this.responseText);
+        //         let users = JSON.parse(this.responseText); //string -> json
+        //         // console.log(data.data);
+        //             let content = "";
+        //             for (let i = 0; i < users.data.length; i++) {
+        //                 content += "<li>" + users.data[i].id + "</li>";
+        //             }
+        //             document.getElementById("pengguna").innerHTML = content;
+        //             // alert(users.length);
+        //         // document.querySelector('#pengguna').innerHTML = xhr.responseText;
+        //    }
+
+        $(document).ready(function (event) {
+        
+            $.get("http://localhost/final_project_wt/api/students", function (data, status) {
+            let content = "";
+            for (let i = 0; i < data.data.length; i++) {
+                content += "<li><p>" + data.data[i].id + "</p><a href='update_student_form.php?id='>Update</a></li>";
+            }
+            $('#pengguna').html(content);
+
+        });
+
+    });
+
+
+
+
+//   //          add new
+        // document.getElementById("getUserid").addEventListener('click', function (event) {
+        //     event.preventDefault();
+        //     var xhr = new XMLHttpRequest();
+        //     // var x = document.getElementById("userid").value;
+        //     let url = "http://localhost/utm_qaiwan_wt/api/user";
+        //     xhr.open("POST", url, true);
+        //     xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+        //     xhr.send("id=id1111&email=fabio@gmail.com&name=Fabio Viaaessssra&age=22");
+
+        //     xhr.onreadystatechange = function () {
+        //         if (this.status == 200 && this.readyState == 4) {
+        //             // alert(this.responseText);
+        //             // console.log(this.responseText);
+
+        //             let users = JSON.parse(this.responseText); //string -> json
+        //             let content = "";
+        //             for (let i = 0; i < users.length; i++) {
+        //                 // const element = users[i];
+        //                 content += "<li>" + users[i].name + "</li>";
+        //             }
+        //             document.getElementById("pengguna").innerHTML = content;
+        //         }
+        //     };
+        //     location.reload();
+        // });
+
+        $("#getUserid").click(function (event) {
+        event.preventDefault();
+        //use this technique for ajax data if not using RESTFul
+        //NOTE: this will capture the name attribute (not id) in our form
+        var formData = $('#id').val();
+        console.log(formData); // check using console to make sure all the form data values are correctly serialized
+
+        $.ajax({
+            type: "delete",
+            url: "http://localhost/final_project_wt/api/students/"+formData,
+            // data: formData,
+
+            success: function (data, status) {
+                console.log(data.status)
+                    // alert(data.message);
+            },
+        });
+        // location.reload();
+    });
+        
+        // document.getElementById("getUserid").addEventListener('click', function (event) {
+        //     event.preventDefault();
+        //     var xhr = new XMLHttpRequest();
+        //     // var x = document.getElementById("userid").value;
+        //     let url = "http://localhost/final_project_wt/api/students/S13";
+        //     //alert(url);
+        //     xhr.open("delete",url,true);
+        //     xhr.send();
+
+        //     xhr.onreadystatechange = function () {
+        //         alert(url);
+        //         if (this.status == 200 && this.readyState == 4) {
+
+        //             // let users = JSON.parse(this.responseText); //string -> json
+        //             // let content = "";
+        //             // for (let i = 0; i < users.length; i++) {
+        //             //     // const element = users[i];
+        //             //     content += "<li>" + users[i].name + "</li>";
+        //             // }
+        //             // alert(content);
+        //             // document.getElementById("pengguna").innerHTML = content;
+        //         }
+        //     };
+        //     location.reload();
+        // });
+
+        // document.getElementById("getUser").addEventListener('click', function (event) {
+        //     event.preventDefault();
+        //     var xhr = new XMLHttpRequest();
+
+        //     xhr.open("GET", "http://localhost/utm_qaiwan_wt/api/user", true);
+        //     xhr.send();
+
+        //     xhr.onreadystatechange = function () {
+        //         if (this.status == 200 && this.readyState == 4) {
+        //             alert(this.responseText);
+        //             console.log(this.responseText);
+
+        //             let users = JSON.parse(this.responseText); //string -> json
+        //             let content = "";
+        //             for (let i = 0; i < users.length; i++) {
+        //                 // const element = users[i];
+        //                 content += "<li>" + users[i].name + "</li>";
+        //             }
+        //             document.getElementById("pengguna").innerHTML = content;
+        //         }
+        //     };
+        // });
+        
+        // document.getElementById("getUserid").addEventListener('click', function (event) {
+        //     event.preventDefault();
+        //     var xhr = new XMLHttpRequest();
+        //     var x = document.getElementById("userid").value;
+        //     let url = "https://jsonplaceholder.typicode.com/users/" + x;
+        //     xhr.open("GET", url, true);
+        //     xhr.send();
+
+        //     xhr.onreadystatechange = function () {
+        //         if (this.status == 200 && this.readyState == 4) {
+        //             alert(this.responseText);
+        //             console.log(this.responseText);
+
+        //             let users = JSON.parse(this.responseText); //string -> json
+        //             let content = "";
+        //             for (let i = 0; i < users.length; i++) {
+        //                 // const element = users[i];
+        //                 content += "<li>" + users[i].name + "</li>";
+        //             }
+        //             document.getElementById("pengguna").innerHTML = content;
+        //         }
+        //     };
+        // });
+    </script>
+</body>
+
+</html>

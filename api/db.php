@@ -7,7 +7,7 @@ header("Content-Type: application/json; charset=UTF-8");
         private $host = 'localhost';
         private $user = 'root';
         private $password = '';
-        private $dbname = 'pankerzudatabase';
+        private $dbname = 'panzuwt';
 
         // Connect
         public function connect(){
