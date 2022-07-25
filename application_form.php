@@ -1,11 +1,12 @@
 <?php
-// session_start(); 
+session_start(); 
 
-// if (isset($_SESSION["userId"])) {
-// header("Location: index.php");
+if (isset($_SESSION["userId"])) {
+header("Location: index.php");
 
-// if ($_SESSION["level"] == 3) { 
+if ($_SESSION["level"] == 3) { 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,7 +14,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Make a bid</title>
+    <title>Application Form</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
@@ -106,4 +107,7 @@
 
 </html>
 
-<?php } } ?>
+<?php 
+}
+} 
+?>
