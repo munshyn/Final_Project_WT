@@ -35,7 +35,7 @@ $app->get('/collegeapps', function (Request $request, Response $response, array 
 //get single student by id
 $app->get('/collegeapps/{id}', function (Request $request, Response $response, array $args) {
     $id = $args['id'];
-    $sql = "SELECT * FROM collegeapp WHERE appId = '$id'";
+    $sql = "SELECT * FROM collegeapp WHERE userId = '$id'";
     try {
         //get the db object
         $db = new db();
