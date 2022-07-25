@@ -1,0 +1,218 @@
+a {
+    color: black;
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+
+
+body {
+    height: 100vh;
+    margin-left: 10rem;
+    margin-right: 10rem;
+    font: 16px/1.5 Helvetica, Arial, sans-serif;
+}
+
+
+.navbar-brand {
+    color: black;
+}
+
+.nav-item li {
+    list-style: none;
+}
+
+.nav-bar a {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+}
+
+.nav-login a {
+    color: white;
+}
+
+
+
+.section {
+    margin-bottom: 18rem;
+}
+
+.section-home {
+    margin-top: 10rem;
+}
+
+.home-image,
+.home-content {
+    margin-left: 6rem;
+}
+
+.home-bg {
+    position: absolute;
+    z-index: -1;
+    top: 60;
+    right: 50;
+    height: 900;
+    width: 900;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(176, 221, 228, 1) 0%, rgba(176, 221, 228, 0.05646008403361347) 50%, rgba(255, 255, 255, 0) 100%);
+}
+
+.home-image img {
+    max-height: 450px;
+    border-radius: 5%;
+}
+
+.home-content h1 {
+    font-weight: 600;
+    font-size: 3rem;
+}
+
+.home-content p {
+    margin-top: 1rem;
+    color: #858585;
+
+}
+
+.home-content a {
+    margin-top: 2rem;
+}
+
+.how-work-image {
+    margin-top: 8rem;
+    padding-top: 2rem;
+}
+
+.how-work-image img {
+    height: 300px;
+}
+
+.section-how-work,
+.section-company {
+    text-align: center;
+}
+
+.section-how-work h1,
+.section-company h1 {
+    font-weight: 700;
+}
+
+.company-image img {
+    height: 100px;
+    width: auto;
+}
+
+.section-company {
+    padding: 3rem;
+    margin-bottom: 0;
+    background-color: rgb(176, 221, 228, 0.5);
+}
+
+.section-company p {
+    padding-top: 5rem;
+    padding-bottom: 2rem;
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: #858585;
+}
+
+.footer-social {
+    width: 200px;
+}
+
+.footer {
+    height: 100px;
+    color: black;
+}
+
+.footer-item {
+    width: 400px;
+}
+
+.line {
+    border-left: 2px solid rgb(222, 222, 222);
+    height: 80px;
+    margin-right: 1.25rem;
+}
+
+.square-content {
+    text-align: center;
+}
+
+.square-content i {
+    font-size: 1.7rem;
+    color: #DF4C73;
+}
+
+.square-content h4 {
+    font-weight: 800;
+
+}
+
+.square-sub-content {
+    color: #858585;
+
+}
+
+.login {
+    display: table;
+    position: relative;
+    top: 0;
+    left: -150px;
+    height: 100%;
+    width: 100%;
+}
+
+.middle {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.login-container {
+    margin-left: 28rem;
+    margin-right: auto;
+    width: 70vw;
+}
+
+.login-bg {
+    position: absolute;
+    z-index: -1;
+    /* top: 60;
+    right: 50; */
+    height: 900;
+    width: 900;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(176, 221, 228, 0.3) 0%, rgba(176, 221, 228, 0.05646008403361347) 50%, rgba(255, 255, 255, 0) 100%);
+}
+
+.login-container h2 {
+    font-weight: 700;
+    font-size: 54px;
+}
+
+.login-container p,
+.card-body p {
+    color: #858585;
+}
+
+.card-body h5 {
+    font-weight: 520;
+    font-size: 24px;
+}
+
+.card-btn {
+    width: 180px;
+}
+
+.card-icon{
+    font-size: 1.75rem;
+}
+
+.flex-wrapper {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    justify-content: space-between;
+}
