@@ -4,22 +4,22 @@ use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
 
-//return json object of all students
-$app->get('/students', function (Request $request, Response $response, array $args) {
-    $sql = "SELECT * FROM student";
+//return json object of all students application
+$app->get('/collegeapps', function (Request $request, Response $response, array $args) {
+    $sql = "SELECT * FROM collegeapp";
     try {
         //get the db object
-        $dbStudent = new db();
+        $db = new db();
         //connect
-        $dbStudent  = $dbStudent->connect();
+        $db  = $db->connect();
 
-        $stmt = $dbStudent->query($sql);
-        $users = $stmt->fetchAll(PDO::FETCH_OBJ);
-        $dbStudent  = null;
+        $stmt = $db->query($sql);
+        $apps = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $db  = null;
         $data = array(
             'status' => 'Success',
-            'message' => 'User found',
-            'data' => $users,
+            'message' => 'Application found',
+            'collegeapp' => $apps,
         );
         return $response->withJson($data, 200);
     } catch (PDOException $e) {
@@ -32,10 +32,10 @@ $app->get('/students', function (Request $request, Response $response, array $ar
 });
 
 
-//get singgle student by id
-$app->get('/students/{id}', function (Request $request, Response $response, array $args) {
+//get single student by id
+$app->get('/collegeapps/{id}', function (Request $request, Response $response, array $args) {
     $id = $args['id'];
-    $sql = "SELECT * FROM student WHERE id = '$id'";
+    $sql = "SELECT * FROM collegeapp WHERE userId = '$id'";
     try {
         //get the db object
         $db = new db();
@@ -43,17 +43,17 @@ $app->get('/students/{id}', function (Request $request, Response $response, arra
         $db = $db->connect();
 
         $stmt = $db->query($sql);
-        $user = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $collegeapp = $stmt->fetchAll(PDO::FETCH_OBJ);
         $db = null;
-        //check if user exist or not, otherwise return 200, with error message
-        if (count($user) == 0) {
-            return $response->withJson(array('status' => 'Unsuccessful', 'message' => 'User not found'), 404);
+        //check if app exist or not, otherwise return 200, with error message
+        if (count($collegeapp) == 0) {
+            return $response->withJson(array('status' => 'Unsuccessful', 'message' => 'Application not found'), 404);
         }
         //else return 200, with user data
         $data = array(
             'status' => 'Success',
-            'message' => 'User found',
-            'data' => $user,
+            'message' => 'Application found',
+            'collegeapp' => $collegeapp,
         );
         return $response->withJson($data, 200);
     } catch (PDOException $e) {
@@ -65,17 +65,16 @@ $app->get('/students/{id}', function (Request $request, Response $response, arra
     }
 });
 
-//add a new student
-$app->post('/students', function (Request $request, Response $response, array $args) {
-    $id = $_POST['id'];
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    $level = $_POST['level'];
-    $name = $_POST['name'];
+//add a new collegeapp
+$app->post('/collegeapps', function (Request $request, Response $response, array $args) {
+    $userId = $_POST['userId'];
     $email = $_POST['email'];
     $gender = $_POST['gender'];
+    $collegeName = $_POST['collegeName'];
+    $roomType = $_POST['roomType'];
+    $appStatus = 'PENDING';
 
-    $sql = "INSERT INTO student (id, username, password, level, name, email, gender) VALUES (:id, :username, :password, :level, :name, :email, :gender)";
+    $sql = "INSERT INTO collegeapp (userId, email, gender, collegeName, roomType, appStatus) VALUES (:userId, :email, :gender, :collegeName, :roomType, :appStatus)";
 
     try {
         //get the db object
@@ -83,24 +82,23 @@ $app->post('/students', function (Request $request, Response $response, array $a
         //connect
         $db = $db->connect();
         $stmt = $db->prepare($sql);
-        $stmt->bindParam(':id', $id);
-        $stmt->bindParam(':username', $username);
-        $stmt->bindParam(':password', $password);
-        $stmt->bindParam(':level', $level);
-        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':userId', $userId);
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':gender',$gender);
+        $stmt->bindParam(':collegeName', $collegeName);
+        $stmt->bindParam(':roomType', $roomType);
+        $stmt->bindParam(':appStatus', $appStatus);
         $stmt->execute();
         $count = $stmt->rowCount();
         $db = null;
         //check if insert was successful, otherwise return 400, with error message
         if ($count == 0) {
-            return $response->withJson(array('status' => 'Unsuccessful', 'message' => 'Failed to create new student'), 400);
+            return $response->withJson(array('status' => 'Unsuccessful', 'message' => 'Failed to create new application'), 400);
         }
-        //else return , with sucess message
+        //else return , with success message
         $data = array(
             'status' => 'success',
-            'message' => 'User successfully added',
+            'message' => 'Application successfully added',
         );
 
         return $response->withJson($data, 201);
@@ -113,11 +111,12 @@ $app->post('/students', function (Request $request, Response $response, array $a
     }
 });
 
-//update student by id
-$app->put('/students/{id}', function (Request $request, Response $response, array $args) {
+//update collegeapp by id
+$app->put('/collegeapps/{id}', function (Request $request, Response $response, array $args) {
     $id = $args['id'];
     $input = $request->getParsedBody();
-    $sql = "UPDATE student SET username = :username, password = :password, level = :level, name = :name, email = :email, gender = :gender WHERE id = :id";
+    // $input = json_decode($request->getBody());
+    $sql = "UPDATE collegeapp SET appStatus = :appStatus WHERE appId = :id";
 
     try {
         //get the db object
@@ -126,21 +125,16 @@ $app->put('/students/{id}', function (Request $request, Response $response, arra
         $db = $db->connect();
         $stmt = $db->prepare($sql);
         $stmt->bindParam(':id', $id);
-        $stmt->bindParam(':username', $input['username']);
-        $stmt->bindParam(':password',$input['password']);
-        $stmt->bindParam(':level',$input['level']);
-        $stmt->bindParam(':name', $input['name']);
-        $stmt->bindParam(':email',$input['email']);
-        $stmt->bindParam(':gender',$input['gender']);
+        $stmt->bindParam(':appStatus', $input['appStatus']);
         $stmt->execute();
         $count = $stmt->rowCount();
         $db = null;
         if($count == 0){
-            return $response->withJson(array('status' => 'Unsuccessful', 'message' => 'Failed to update student'), 400);
+            return $response->withJson(array('status' => 'Unsuccessful', 'message' => 'Failed to update application'), 400);
         }
         $data = array(
             'status' => 'success',
-            'message' => 'User successfully update',
+            'message' => 'Application successfully update',
         );
         return $response->withJson($data, 200);
         
@@ -154,10 +148,10 @@ $app->put('/students/{id}', function (Request $request, Response $response, arra
     }
 });
 
-//delete student by id
-$app->delete('/students/{id}', function (Request $request, Response $response, array $args) {
+//delete collegeapp by id
+$app->delete('/collegeapps/{id}', function (Request $request, Response $response, array $args) {
     $id = $args['id'];
-    $sql = "DELETE FROM student WHERE id = '$id'";
+    $sql = "DELETE FROM collegeapp WHERE appId = '$id'";
 
     try {
         //get the db object
@@ -168,13 +162,13 @@ $app->delete('/students/{id}', function (Request $request, Response $response, a
         $stmt->execute();
         $count = $stmt->rowCount();
         $db = null;
-        //no user is deleted, thus, return 404
+        //no app is deleted, thus, return 404
         if ($count == 0) {
-            return $response->withJson(array('status' => 'Unsuccessful', 'message' => 'There is no user exist for the current Id'), 404);
+            return $response->withJson(array('status' => 'Unsuccessful', 'message' => 'There is no app exist for the current Id'), 404);
         }
         $data = array(
             'status' => 'success',
-            'message' => 'User successfully delete',
+            'message' => 'Application successfully delete',
         );
         return $response->withJson($data, 200);
     } catch (PDOException $e) {

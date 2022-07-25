@@ -7,16 +7,14 @@ require 'db.php';
 
 
 $app = new \Slim\App;
-//routes for students
-//require_once('student.php');
-//routes for managers
-require_once('manager.php');
+
+//routes for users
+require_once('users.php');
+//routes for application
+require_once('collegeapp.php');
 //routes for colleges
 require_once('college.php');
-//routes for admins
-require_once('admin.php');
 
-require_once('users.php');
 
 //add a new patient
 $app->post('/login', function (Request $request, Response $response, array $args) {

@@ -8,7 +8,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../static/main.css">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <title>Home</title>
@@ -51,9 +51,9 @@ session_start();
                 ?>
                     <ul class="nav-item d-flex align-items-end">
                         <li><a href="#home">Home</a></li>
-                        <li><a href="#home" class="ms-4">Apply College</a></li>
-                        <li><a href="#how-work" class="ms-4">Status</a></li>
-                        <li><a href="#company" class="ms-4">College</a></li>
+                        <li><a href="app_form.php" class="ms-4">Apply College</a></li>
+                        <li><a href="view_app.php" class="ms-4">Application Status</a></li>
+                        <li><a href="view_colleges.php" class="ms-4">Colleges</a></li>
                     </ul>
                 <?php
                 }
@@ -267,7 +267,7 @@ session_start();
                                     <div>
                                         <h2>Apply college</h2>
                                         <p>Fill in the form details and choose your favorite college in the UTM. Don't forget to invite your friend to apply together with you. </p>
-                                        <a href="#" class="btn btn-primary">
+                                        <a href="app_form.php" class="btn btn-primary">
                                             Apply
                                         </a>
                                     </div>
@@ -282,7 +282,7 @@ session_start();
                                     <div>
                                         <h2>View application status</h2>
                                         <p>View your current application status on the spot by clicking the button.</p>
-                                        <a href="#" class="btn btn-primary">
+                                        <a href="view_app.php" class="btn btn-primary">
                                             View status
                                         </a>
                                     </div>
@@ -297,7 +297,7 @@ session_start();
                                     <div>
                                         <h2>View Colleges</h2>
                                         <p>Page containing all college details in the system of that particular company. The system will also show current college avaibility status and number of people occupied.</p>
-                                        <a href="#" class="btn btn-primary">
+                                        <a href="view_colleges.php" class="btn btn-primary">
                                             View college
                                         </a>
                                     </div>
