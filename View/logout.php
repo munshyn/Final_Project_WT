@@ -21,4 +21,4 @@ session_destroy(); //destroy the session
 // go to login page 
 header('Location: index.php'); 
 exit; 
-?> 
+?>

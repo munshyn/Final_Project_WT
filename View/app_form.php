@@ -39,7 +39,7 @@ if (isset($_SESSION["userId"])) {
                     </div>
                     <div class="col">
                         <div class="container app-form">
-                            <form id="form-apply">
+                            <form name="formApply" id="form-apply">
                                 <div class="row justify-content-evenly my-5">
                                     <div class="col">
                                         <input type="number" id="userId" name="userId" value="<?php echo $_SESSION['userId']; ?>" hidden>
@@ -115,40 +115,62 @@ if (isset($_SESSION["userId"])) {
         </div>
         <script>
             $(document).ready(function() {
+                $.get('http://localhost/final_project_wt/api/collegeapps/' + <?php echo $_SESSION['userId']; ?>, function(collegeAppdata, status) {
 
-                $.get('http://localhost/final_project_wt/api/colleges', function(data, status) {
                     let content = '';
-                    content += '<option selected>Select College</option>';
-                    for (let i = 0; i < data.college.length; i++) {
-                        content += '<option value="' + data.college[i].collegeName + '">' + data.college[i].collegeName + '</option>';
-                    }
+                    if (collegeAppdata.collegeapp.length == 0) {
+                        $.get('http://localhost/final_project_wt/api/colleges', function(data, status) {
 
-                    $('#collegeName').html(content);
+                            content += '<option selected>Select College</option>';
+                            for (let i = 0; i < data.college.length; i++) {
+                                content += '<option value="' + data.college[i].collegeName + '">' + data.college[i].collegeName + '</option>';
+                            }
+                            $('#collegeName').html(content);
+                        });
+
+                    } else {
+                        for (let j = 0; j < collegeAppdata.collegeapp.length; j++) {
+                            if (collegeAppdata.collegeapp[j].appStatus == 'APPROVED') {
+                                alert('Your application has approved');
+                                window.location.href = 'view_app.php';
+                            }
+                        }
+                        $.get('http://localhost/final_project_wt/api/colleges', function(data, status) {
+
+                            content += '<option selected>Select College</option>';
+                            for (let i = 0; i < data.college.length; i++) {
+                                content += '<option value="' + data.college[i].collegeName + '">' + data.college[i].collegeName + '</option>';
+                            }
+                            $('#collegeName').html(content);
+                        });
+                    }
                 });
             });
 
             $("#form-apply").submit(function(event) {
                 event.preventDefault();
+                var college = document.formApply;
+                if (college.collegeName.value == "Select College") {
+                    alert('Please choose a college!');
+                } else {
+                    var formData = $(this).serialize();
+                    $.ajax({
+                        type: "post",
+                        url: "http://localhost/final_project_wt/api/collegeapps",
+                        data: formData,
+                        dataType: "json",
 
-                var formData = $(this).serialize();
-                console.log(formData)
-
-                $.ajax({
-                    type: "post",
-                    url: "http://localhost/final_project_wt/api/collegeapps",
-                    data: formData,
-                    dataType: "json",
-
-                    success: function(data, status, xhr) {
-                        if (data.status == 'success') {
-                            alert('Applied Successfully');
-                            window.location.href = 'index.php';
-                        } else {
-                            alert(data.message);
-                            window.location.href = 'index.php';
-                        }
-                    },
-                });
+                        success: function(data, status, xhr) {
+                            if (data.status == 'success') {
+                                alert('Applied Successfully');
+                                window.location.href = 'index.php';
+                            } else {
+                                alert(data.message);
+                                window.location.href = 'index.php';
+                            }
+                        },
+                    });
+                }
             });
         </script>
     </body>

@@ -33,18 +33,18 @@ session_start();
             ?>
                     <ul class="nav-item d-flex align-items-end">
                         <li><a href="#home">Home</a></li>
-                        <li><a href="#" class="ms-4">Users</a></li>
-                        <li><a href="#" class="ms-4">Application</a></li>
-                        <li><a href="#" class="ms-4">College</a></li>
+                        <li><a href="viewUsers.php" class="ms-4">Users</a></li>
+                        <li><a href="manage_apps.php" class="ms-4">Application</a></li>
+                        <li><a href="view_colleges.php" class="ms-4">College</a></li>
                     </ul>
                 <?php
                 } else if ($_SESSION["level"] == 2) {
                 ?>
                     <ul class="nav-item d-flex align-items-end">
                         <li><a href="#home">Home</a></li>
-                        <li><a href="#" class="ms-4">Students</a></li>
-                        <li><a href="#" class="ms-4">Manage Application</a></li>
-                        <li><a href="#" class="ms-4">College</a></li>
+                        <li><a href="viewStudents.php" class="ms-4">Students</a></li>
+                        <li><a href="manage_apps.php" class="ms-4">Manage Application</a></li>
+                        <li><a href="view_colleges.php" class="ms-4">College</a></li>
                     </ul>
                 <?php
                 } else if ($_SESSION["level"] == 3) {
@@ -179,7 +179,7 @@ session_start();
                                     <div>
                                         <h2>View student application</h2>
                                         <p>Page containing all student application including student details such as name and email and their preffered college. Also, the status of the application will be displayed as well</p>
-                                        <a href="#" class="btn btn-primary">
+                                        <a href="manage_apps.php" class="btn btn-primary">
                                             View application
                                         </a>
                                     </div>
@@ -196,7 +196,7 @@ session_start();
                                     <div>
                                         <h2>View Colleges</h2>
                                         <p>Page containing all college details in the system of that particular company. The system will also show current college avaibility status and number of people occupied.</p>
-                                        <a href="#" class="btn btn-primary">
+                                        <a href="view_colleges.php" class="btn btn-primary">
                                             View college
                                         </a>
                                     </div>
@@ -232,7 +232,7 @@ session_start();
                                     <div>
                                         <h2>Manage student application</h2>
                                         <p>Approve or reject student application that have made in this system. The page will contain information such as student details and their preffered college.</p>
-                                        <a href="#" class="btn btn-primary">
+                                        <a href="manage_apps.php" class="btn btn-primary">
                                             Manage application
                                         </a>
                                     </div>
@@ -247,7 +247,7 @@ session_start();
                                     <div>
                                         <h2>View Colleges</h2>
                                         <p>Page containing all college details in the system of that particular company. The system will also show current college avaibility status and number of people occupied.</p>
-                                        <a href="#" class="btn btn-primary">
+                                        <a href="view_colleges.php" class="btn btn-primary">
                                             View college
                                         </a>
                                     </div>

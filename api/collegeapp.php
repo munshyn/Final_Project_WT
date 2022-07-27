@@ -32,7 +32,7 @@ $app->get('/collegeapps', function (Request $request, Response $response, array 
 });
 
 
-//get single student by id
+//get application by user id
 $app->get('/collegeapps/{id}', function (Request $request, Response $response, array $args) {
     $id = $args['id'];
     $sql = "SELECT * FROM collegeapp WHERE userId = '$id'";
@@ -46,16 +46,17 @@ $app->get('/collegeapps/{id}', function (Request $request, Response $response, a
         $collegeapp = $stmt->fetchAll(PDO::FETCH_OBJ);
         $db = null;
         //check if app exist or not, otherwise return 200, with error message
-        if (count($collegeapp) == 0) {
-            return $response->withJson(array('status' => 'Unsuccessful', 'message' => 'Application not found'), 404);
-        }
-        //else return 200, with user data
-        $data = array(
-            'status' => 'Success',
-            'message' => 'Application found',
-            'collegeapp' => $collegeapp,
-        );
-        return $response->withJson($data, 200);
+        // if ($collegeapp == null) {
+        //     return $response->withJson(array('status' => 'Unsuccessful', 'message' => 'Application not found'), 404);
+        // }else {
+            //else return 200, with app data
+            $data = array(
+                'status' => 'Success',
+                'message' => 'Application found',
+                'collegeapp' => $collegeapp,
+            );
+            return $response->withJson($data, 200);
+        
     } catch (PDOException $e) {
         $error = array(
             'status' => 'Error',
