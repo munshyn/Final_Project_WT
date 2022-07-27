@@ -58,6 +58,33 @@ $app->get('/students', function (Request $request, Response $response, array $ar
     }
 });
 
+//get all managers
+$app->get('/managers', function (Request $request, Response $response, array $args) {
+    $sql = "SELECT * FROM users WHERE level = 2";
+    try {
+        //get the db object
+        $dbStudent = new db();
+        //connect
+        $dbStudent  = $dbStudent->connect();
+
+        $stmt = $dbStudent->query($sql);
+        $users = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $dbStudent  = null;
+        $data = array(
+            'status' => 'Success',
+            'message' => 'User found',
+            'data' => $users,
+        );
+        echo json_encode($users);
+    } catch (PDOException $e) {
+        $error = array(
+            'status' => 'Error',
+            'message' => $e->getMessage(),
+        );
+        echo json_encode($users);
+    }
+});
+
 //get single user by id
 $app->get('/users/{id}', function (Request $request, Response $response, array $args) {
     $id = $args['id'];
@@ -140,7 +167,7 @@ $app->post('/users', function (Request $request, Response $response, array $args
 $app->put('/users/{id}', function (Request $request, Response $response, array $args) {
     $id = $args['id'];
     $input = $request->getParsedBody();
-    $sql = "UPDATE users SET email = :email, password = :password, level = :level, name = :name WHERE userId = :id";
+    $sql = "UPDATE users SET email = :email, name = :name WHERE userId = :id";
 
     try {
         //get the db object
@@ -150,8 +177,6 @@ $app->put('/users/{id}', function (Request $request, Response $response, array $
         $stmt = $db->prepare($sql);
         $stmt->bindParam(':id', $id);
         $stmt->bindParam(':email', $input['email']);
-        $stmt->bindParam(':password',$input['password']);
-        $stmt->bindParam(':level',$input['level']);
         $stmt->bindParam(':name', $input['name']);
         
         $stmt->execute();
