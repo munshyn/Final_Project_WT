@@ -108,7 +108,7 @@ $app->get('/users/{id}', function (Request $request, Response $response, array $
             'message' => 'User found',
             'data' => $user,
         );
-        echo json_encode($users);
+        echo json_encode($user[0]);
     } catch (PDOException $e) {
         $error = array(
             'status' => 'Error',
@@ -232,4 +232,3 @@ $app->delete('/users/{id}', function (Request $request, Response $response, arra
         return $response->withJson($error, 400);
     }
 });
-?>

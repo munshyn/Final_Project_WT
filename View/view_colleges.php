@@ -29,18 +29,18 @@ if (isset($_SESSION["userId"])) {
         if ($_SESSION["level"] == 1) {
         ?>
           <ul class="nav-item d-flex align-items-end">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#" class="ms-4">Users</a></li>
-            <li><a href="#" class="ms-4">Application</a></li>
+            <li><a href="index.php">Home</a></li>
+            <li><a href="viewUsers.php" class="ms-4">Users</a></li>
+            <li><a href="manage_apps.php" class="ms-4">Application</a></li>
             <li><a href="#" class="ms-4">College</a></li>
           </ul>
         <?php
         } else if ($_SESSION["level"] == 2) {
         ?>
           <ul class="nav-item d-flex align-items-end">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#" class="ms-4">Students</a></li>
-            <li><a href="#" class="ms-4">Manage Application</a></li>
+            <li><a href="index.php">Home</a></li>
+            <li><a href="viewStudents.php" class="ms-4">Students</a></li>
+            <li><a href="manage_apps.php" class="ms-4">Manage Application</a></li>
             <li><a href="#" class="ms-4">College</a></li>
           </ul>
         <?php

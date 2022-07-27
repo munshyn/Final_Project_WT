@@ -12,7 +12,7 @@ if (isset($_SESSION["userId"])) {
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>All Colleges</title>
+        <title>Applications Status</title>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="../static/main.css">
@@ -28,7 +28,7 @@ if (isset($_SESSION["userId"])) {
                 <ul class="nav-item d-flex align-items-end">
                     <li><a href="index.php">Home</a></li>
                     <li><a href="app_form.php" class="ms-4">Apply College</a></li>
-                    <li><a href="#viewapp" class="ms-4">Application Status</a></li>
+                    <li><a href="#viewapp" class="ms-4">Applications Status</a></li>
                     <li><a href="view_colleges.php" class="ms-4">Colleges</a></li>
                 </ul>
                 <div class="nav-login btn btn-primary"><a href="logout.php">Logout</a></div>
@@ -36,14 +36,16 @@ if (isset($_SESSION["userId"])) {
             <!-- main content -->
             <div class="container w-50">
                 <div class="mb-5 d-flex justify-content-center">
-                    <h1>Application Status</h1>
+                    <h1>Applications Status</h1>
+                </div>
+                <div class="mb-3 d-flex justify-content-center" id="no-record">
                 </div>
                 <table class="table table-bordered border-dark table-hover">
-                    <thead></thead>
+                    <thead class="table-primary table-bordered border-dark" id="the-head">
+                    </thead>
                     <tbody id="the-body">
                     </tbody>
                 </table>
-
             </div>
             <footer class="footer d-flex justify-content-between align-items-center">
                 <a href="#">ParkerPanzu</a>
@@ -67,14 +69,36 @@ if (isset($_SESSION["userId"])) {
                 $.get('http://localhost/final_project_wt/api/collegeapps/' + <?php echo $_SESSION['userId']; ?>, function(data, status) {
 
                     let content = '';
-                    content += "<tr><th class='table-bordered border-dark table-primary' scope='row'>Email</th><td>" + data.collegeapp[0].email + "</td></tr>";
-                    content += "<tr><th class='table-bordered border-dark table-primary' scope='row'>Gender</th><td>" + data.collegeapp[0].gender + "</td></tr>";
-                    content += "<tr><th class='table-bordered border-dark table-primary' scope='row'>College Name</th><td>" + data.collegeapp[0].collegeName + "</td></tr>";
-                    content += "<tr><th class='table-bordered border-dark table-primary' scope='row'>Room Type</th><td>" + data.collegeapp[0].roomType + "</td></tr>";
-                    content += "<tr><th class='table-bordered border-dark table-primary' scope='row'>Status</th><td>" + data.collegeapp[0].appStatus + "</td></tr>";
-                    $('#the-body').html(content);
+                    if (data.collegeapp.length == 0) {
+                        content += '<h3>No Record Found</h3>';
+                        $('#no-record').html(content);
+                    } else {
+                        let headcontent = '<tr><th scope="col">No.</th><th scope="col">College Name</th><th scope="col">Room Type</th><th scope="col">Status</th><th scope="col"></th></tr>';
+                        for (let i = 0; i < data.collegeapp.length; i++) {
+                            content += "<tr><th scope='row'>" + (i + 1) + "</th><td>" + data.collegeapp[i].collegeName + "</td><td>" + data.collegeapp[i].roomType + "</td><td>" + data.collegeapp[i].appStatus + "</td><td><button type='button' id='cancel-app' class='btn btn-danger' onclick='cancelFunction(" + data.collegeapp[i].appId + ")'>Cancel</button></td></tr>";
+                        }
+                        $('#the-head').html(headcontent);
+                        $('#the-body').html(content);
+                    }
                 });
             });
+
+            function cancelFunction(appId) {
+                $.ajax({
+                    type: "delete",
+                    url: "http://localhost/final_project_wt/api/collegeapps/" + appId,
+
+                    success: function(data, status, xhr) {
+                        if (data.status == 'success') {
+                            alert('Cancelled Successfully');
+                            window.location.href = 'view_app.php';
+                        } else {
+                            alert(data.message);
+                            window.location.href = 'view_app.php';
+                        }
+                    },
+                });
+            }
         </script>
     </body>
 
