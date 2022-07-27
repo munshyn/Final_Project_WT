@@ -74,47 +74,45 @@ if (isset($_SESSION["userId"])) {
           </tbody>
         </table>
 
-		<div class=" justify-content-center">
-				<label for="">Enter email</label><br>
-               <input id="search" type="text"> <button id="search_btn" class="btn btn-primary">Search</button>
-               <a href="index.php"><button class="btn btn-danger">Cancel</button></a>
-			  </div>
+        <div class=" justify-content-center">
+          <label for="">Enter email</label><br>
+          <input id="search" type="text"> <button id="search_btn" class="btn btn-primary">Search</button>
+          <a href="index.php"><button class="btn btn-danger">Cancel</button></a>
+        </div>
 
       </div>
 
-	  <div class="container w-50" id="form-div" style="display: none;">
-                <div class="row">
-                    <div class="col-3 app-title">
-                        <h2>Update</h2>
-                        <h2>User</h2>
-                    </div>
-                    <div class="col">
-                        <div class="container app-form">
-                            <form id="form">
-                                <div class="row justify-content-evenly my-5">
-                                    <div class="col">
-                                        <label for="email" class="form-label">Email</label>
-                                        <input type="email" class="form-control" id="email" name="email" required>
-                                    </div>
-                                    
-                                </div>
-                                <div class="row justify-content-evenly my-5">
-                                    <div class="col">
-                                    <label for="name" class="form-label">Name</label>
-                                        <input type="text" class="form-control" id="name" name="name" required>
-                                    </div>
-                                   
-                                    <div class="mb-3 d-flex justify-content-end">
-									<input type="reset" class="btn btn-secondary m-2"  value="Reset"></input>
-                                        <input type="button" class="btn btn-danger m-2" id="delete"  value="Delete User"></input>
-                                        <input type="submit" class="btn btn-submit m-2" value="Submit"></input>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+      <div class="container w-50" id="form-div" style="display: none;">
+        <div class="row">
+          <div class="col-3 app-title">
+            <h2>Update</h2>
+            <h2>User</h2>
+          </div>
+          <div class="col">
+            <div class="container app-form">
+              <form id="form">
+                <div class="row justify-content-evenly my-5">
+                  <div class="col">
+                    <label for="email" class="form-label" id="label-email">Email</label>
+                  </div>
+
                 </div>
+                <div class="row justify-content-evenly my-5">
+                  <div class="col">
+                    <label for="name" class="form-label" id="label-name">Name</label>
+                  </div>
+
+                  <div class="mb-3 d-flex justify-content-end">
+                    <input type="reset" class="btn btn-secondary m-2" value="Reset"></input>
+                    <input type="button" class="btn btn-danger m-2" id="delete" value="Delete User"></input>
+                    <input type="submit" class="btn btn-submit m-2" value="Submit"></input>
+                  </div>
+                </div>
+              </form>
             </div>
+          </div>
+        </div>
+      </div>
 
 
       <footer class="footer d-flex justify-content-between align-items-center">
@@ -135,118 +133,120 @@ if (isset($_SESSION["userId"])) {
 
 
     <script>
-		var _id;
+      var _id;
 
-      document.addEventListener("DOMContentLoaded", function () {
-		event.preventDefault();
+      document.addEventListener("DOMContentLoaded", function() {
+        event.preventDefault();
 
-		var xhttp = new XMLHttpRequest();
-		xhttp.open("GET", "http://localhost/final_project_wt/api/users", true);
-		xhttp.send();
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("GET", "http://localhost/final_project_wt/api/users", true);
+        xhttp.send();
 
-		xhttp.onreadystatechange = function () {
-			if (this.readyState == 4 && xhttp.status == 200) {
-				console.log(this.responseText);
-				console.log(JSON.parse(this.responseText));
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && xhttp.status == 200) {
+            console.log(this.responseText);
+            console.log(JSON.parse(this.responseText));
 
-				var item = JSON.parse(this.responseText);
-				
-				var content = '';
-				for (let i = 0; i < item.length; i++) {
-					content += "<tr><td>" + (i + 1) + "</td><td>" + item[i].email + "</td><td>" + item[i].name + "</td></tr>";
-					console.log("test")
-				}
-				document.getElementById("item").innerHTML = content;
-			}
-			// when step 4, with status == 404
-			else if (this.readyState == 4 && xhttp.status == 404) {
-				alert(this.status + ' </br> resos not found');
-			}
-		};
-	});
+            var item = JSON.parse(this.responseText);
 
-	document.getElementById('search_btn').addEventListener('click', function () {
-		event.preventDefault();
+            var content = '';
+            for (let i = 0; i < item.length; i++) {
+              content += "<tr><td>" + (i + 1) + "</td><td>" + item[i].email + "</td><td>" + item[i].name + "</td></tr>";
+              console.log("test")
+            }
+            document.getElementById("item").innerHTML = content;
+          }
+          // when step 4, with status == 404
+          else if (this.readyState == 4 && xhttp.status == 404) {
+            alert(this.status + ' </br> resos not found');
+          }
+        };
+      });
+
+      document.getElementById('search_btn').addEventListener('click', function() {
+        event.preventDefault();
 
         var xhttp = new XMLHttpRequest();
         var email = document.getElementById('search').value;
         xhttp.open("GET", "http://localhost/final_project_wt/api/users", true);
         xhttp.send();
-        xhttp.onreadystatechange = function () {
-			if (this.readyState == 4 && xhttp.status == 200) {
-				console.log(this.responseText);
-				console.log(JSON.parse(this.responseText));
-				var item = JSON.parse(this.responseText);
-				const form = document.getElementById('form-div');
-				const table = document.getElementById('table-div');
-				
-				for (let i = 0; i < item.length; i++) {
-					if (item[i].email==email) {
-                        form.style.display = 'block';
-						table.style.display = 'none';
-                        return setId(item[i].userId);
-                    }
-				}
-                alert("email not found");
-			}
-			// when step 4, with status == 404
-			else if (this.readyState == 4 && xhttp.status == 404) {
-				alert(this.status + ' </br> resource not found');
-			}
-		};
-		
-	});
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && xhttp.status == 200) {
+            console.log(this.responseText);
+            console.log(JSON.parse(this.responseText));
+            var item = JSON.parse(this.responseText);
+            const form = document.getElementById('form-div');
+            const table = document.getElementById('table-div');
 
-   function setId(id) {
-    _id = id;
+            for (let i = 0; i < item.length; i++) {
+              if (item[i].email == email) {
+                form.style.display = 'block';
+                table.style.display = 'none';
+                let emailcontent = '<input type="email" class="form-control" id="email" name="email" value="'+ item[i].email+'" required>';
+                $("#label-email").after(emailcontent);
+                let namecontent = '<input type="text" class="form-control" id="name" name="name" value="'+ item[i].name+'"required>';
+                $("#label-name").after(namecontent);
+                return setId(item[i].userId);
+              }
+            }
+            alert("email not found");
+          }
+          // when step 4, with status == 404
+          else if (this.readyState == 4 && xhttp.status == 404) {
+            alert(this.status + ' </br> resource not found');
+          }
+        };
 
-   }
+      });
+
+      function setId(id) {
+        _id = id;
+      }
 
 
-   $("#form").submit(function (event) {
-            event.preventDefault();
+      $("#form").submit(function(event) {
+        event.preventDefault();
 
-            var formData = $(this).serialize();
-            console.log(formData);
+        var formData = $(this).serialize();
+        console.log(formData);
 
-            $.ajax({
-                type: "put",
-                url: "http://localhost/final_project_wt/api/users/" + _id,
-                data: formData,
-                dataType: "json",
+        $.ajax({
+          type: "put",
+          url: "http://localhost/final_project_wt/api/users/" + _id,
+          data: formData,
+          dataType: "json",
 
-                success: function (data, status, xhr) {
-                    console.log(xhr.status)
-                    if (data.status == 'success') {
-                        alert(data.message);
-                        window.location.href= 'index.php';
-                    } else {
-                        alert(data.message);
-                        window.location.href= 'index.php';
-                    }
-                },
-            });
+          success: function(data, status, xhr) {
+            console.log(xhr.status)
+            if (data.status == 'success') {
+              alert(data.message);
+              window.location.href = 'index.php';
+            } else {
+              alert(data.message);
+              window.location.href = 'index.php';
+            }
+          },
         });
+      });
 
-		document.getElementById('delete').addEventListener('click',function (event) {
-            event.preventDefault();
-			
-            $.ajax({
-                type: "delete",
-                url: "http://localhost/final_project_wt/api/users/" + _id,
+      document.getElementById('delete').addEventListener('click', function(event) {
+        event.preventDefault();
 
-                success: function (data, status) {
-                    if (data.status == 'success') {
-                        alert(data.message);
-                        window.location.href= 'index.php';
-                    } else {
-                        alert(data.message);
-                        window.location.href= 'index.php';
-                    }
-                },
-            });
+        $.ajax({
+          type: "delete",
+          url: "http://localhost/final_project_wt/api/users/" + _id,
+
+          success: function(data, status) {
+            if (data.status == 'success') {
+              alert(data.message);
+              window.location.href = 'index.php';
+            } else {
+              alert(data.message);
+              window.location.href = 'index.php';
+            }
+          },
         });
-
+      });
     </script>
   </body>
 
