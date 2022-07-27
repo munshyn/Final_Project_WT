@@ -99,7 +99,7 @@ session_start();
                                     <div>
                                         <h2>Add new student</h2>
                                         <p>Register new student information such as name, email in the system and generate the password and id for it in the system. Student have ability to apply college.</p>
-                                        <a href="#" class="btn btn-primary">
+                                        <a href="addNewStudent.php" class="btn btn-primary">
                                             Add student
                                         </a>
                                     </div>
@@ -114,7 +114,7 @@ session_start();
                                     <div>
                                         <h2>Add new manager</h2>
                                         <p>Register new manager information such as name, email in the system and generate the password and id for it in the system. Manager can approve or reject the student application.</p>
-                                        <a href="#" class="btn btn-primary">
+                                        <a href="addNewManager.php" class="btn btn-primary">
                                             Add manager
                                         </a>
                                     </div>
@@ -129,7 +129,7 @@ session_start();
                                     <div>
                                         <h2>View all student</h2>
                                         <p>Page containing list of students details including id, email and name in the system. Admin have an ability to delete or update any of the selected student </p>
-                                        <a href="#" class="btn btn-primary">
+                                        <a href="viewStudents.php" class="btn btn-primary">
                                             View student
                                         </a>
                                     </div>
@@ -146,7 +146,7 @@ session_start();
                                     <div>
                                         <h2>View all manager</h2>
                                         <p>Page containing list of manager details including id, email and name in the system. Admin have an ability to delete or update any of the selected student</p>
-                                        <a href="#" class="btn btn-primary">
+                                        <a href="viewManagers.php" class="btn btn-primary">
                                             View manager
                                         </a>
                                     </div>
@@ -164,7 +164,7 @@ session_start();
                                     <div>
                                         <h2>View all user</h2>
                                         <p>Page containing list of user details including id, email, password, name and level.</p>
-                                        <a href="#" class="btn btn-primary">
+                                        <a href="viewUsers.php" class="btn btn-primary">
                                             View user
                                         </a>
                                     </div>
@@ -198,6 +198,21 @@ session_start();
                                         <p>Page containing all college details in the system of that particular company. The system will also show current college avaibility status and number of people occupied.</p>
                                         <a href="view_colleges.php" class="btn btn-primary">
                                             View college
+                                        </a>
+                                    </div>
+                                </div>
+                                <!-- update user -->
+                                <div class="col d-flex align-items-start">
+                                    <div class="icon-square bg-light text-dark flex-shrink-0 me-3">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="bi" width="2em" height="2em" viewBox="0 0 24 24">
+                                            <path fill="#000000" d="M15.71,12.71a6,6,0,1,0-7.42,0,10,10,0,0,0-6.22,8.18,1,1,0,0,0,2,.22,8,8,0,0,1,15.9,0,1,1,0,0,0,1,.89h.11a1,1,0,0,0,.88-1.1A10,10,0,0,0,15.71,12.71ZM12,12a4,4,0,1,1,4-4A4,4,0,0,1,12,12Z" />
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h2>Update Users</h2>
+                                        <p>Page containing form to updatee users' information.</p>
+                                        <a href="updateUsers.php" class="btn btn-primary">
+                                            Update user
                                         </a>
                                     </div>
                                 </div>

@@ -60,13 +60,13 @@ if (isset($_SESSION["userId"])) {
       <!-- main content -->
       <div class="container w-50">
         <div class="mb-5 d-flex justify-content-center">
-          <h1>List of Users</h1>
+          <h1>List of Managers</h1>
         </div>
         <table class="table table-bordered table-hover">
           <thead class="table-primary">
             <tr>
               <th scope="col">No.</th>
-              <th scope="col">User Name</th>
+              <th scope="col">Manager Name</th>
               <th scope="col">Email</th>
             </tr>
           </thead>
@@ -97,7 +97,7 @@ if (isset($_SESSION["userId"])) {
 		event.preventDefault();
 
 		var xhttp = new XMLHttpRequest();
-		xhttp.open("GET", "http://localhost/final_project_wt/api/users", true);
+		xhttp.open("GET", "http://localhost/final_project_wt/api/managers", true);
 		xhttp.send();
 
 		xhttp.onreadystatechange = function () {
